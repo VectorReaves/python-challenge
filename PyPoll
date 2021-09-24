@@ -7,7 +7,7 @@ correyVotes = 0
 liVotes = 0
 otooleyVotes = 0
 
-csvpath = os.path.join('.', 'PyPoll', 'Resources', 'election_data.csv')
+csvpath = os.path.join('Desktop', 'GitHub', 'python-challenge', 'PyPoll', 'Resources', 'election_data.csv')
 
 with open(csvpath, newline='') as csvfile:
 
@@ -55,7 +55,7 @@ print(f"============")
 print(f"Winner: {winnerName}")
 print(f"============")
 
-output_file = os.path.join('.', 'PyPoll', 'Resources', 'election_data_revised.text')
+output_file = os.path.join('Desktop', 'GitHub', 'python-challenge', 'PyPoll', 'Resources', 'election_data.csv')
 
 with open(output_file, 'w',) as txtfile:
 
