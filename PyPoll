@@ -1,0 +1,72 @@
+import os
+import csv
+
+totalVotes = 0
+KhanVotes = 0
+correyVotes = 0
+liVotes = 0
+otooleyVotes = 0
+
+csvpath = os.path.join('.', 'PyPoll', 'Resources', 'election_data.csv')
+
+with open(csvpath, newline='') as csvfile:
+
+    csvreader = csv.reader(csvfile, delimiter=',')
+    csv_header = next(csvfile)
+
+    for row in csvreader:
+
+        totalVotes += 1
+
+        if (row[2] == "Khan"):
+            KhanVotes += 1
+        elif (row[2] == "Correy"):
+            correyVotes += 1
+        elif (row[2] == "Li"):
+            liVotes += 1
+        else:
+            otooleyVotes += 1
+            
+    khanPercent = KhanVotes / totalVotes
+    correyPercent = correyVotes / totalVotes
+    liPercent = liVotes / totalVotes
+    otooleyPercent = otooleyVotes / totalVotes
+    
+    winner = max(KhanVotes, correyVotes, liVotes, otooleyVotes)
+
+    if winner == KhanVotes:
+        winnerName = "Khan"
+    elif winner == correyVotes:
+        winnerName = "Correy"
+    elif winner == liVotes:
+        winnerName = "Li"
+    else:
+        winnerName = "O'Tooley" 
+
+print(f"Election Results")
+print(f"============")
+print(f"Total Votes: {totalVotes}")
+print(f"============")
+print(f"Kahn: {khanPercent:.3%}({KhanVotes})")
+print(f"Correy: {correyPercent:.3%}({correyVotes})")
+print(f"Li: {liPercent:.3%}({liVotes})")
+print(f"O'Tooley: {otooleyPercent:.3%}({otooleyVotes})")
+print(f"============")
+print(f"Winner: {winnerName}")
+print(f"============")
+
+output_file = os.path.join('.', 'PyPoll', 'Resources', 'election_data_revised.text')
+
+with open(output_file, 'w',) as txtfile:
+
+    txtfile.write(f"Election Results\n")
+    txtfile.write(f"============\n")
+    txtfile.write(f"Total Votes: {totalVotes}\n")
+    txtfile.write(f"============\n")
+    txtfile.write(f"Kahn: {khanPercent:.3%}({KhanVotes})\n")
+    txtfile.write(f"Correy: {correyPercent:.3%}({correyVotes})\n")
+    txtfile.write(f"Li: {liPercent:.3%}({liVotes})\n")
+    txtfile.write(f"O'Tooley: {otooleyPercent:.3%}({otooleyVotes})\n")
+    txtfile.write(f"============\n")
+    txtfile.write(f"Winner: {winnerName}\n")
+    txtfile.write(f"============\n")
