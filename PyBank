@@ -1,0 +1,70 @@
+import os
+import csv
+
+totalMonths = 0
+netAMount = 0
+monthlyChange = []
+monthlyCount = []
+greatestIncrease = 0
+greatestIncreaseMonth = 0
+greatestDecrease = 0
+greatestDecreaseMonth = 0
+
+csvpath = os.path.join('.', 'PyBank', 'Resources', 'budget_data.csv')
+
+with open(csvpath, newline='') as csvfile:
+
+    csvreader = csv.reader(csvfile, delimiter=',')
+    
+    csvHeader = next(csvreader)
+    row = next(csvreader)
+    
+    previousRow = int(row[1])
+    totalMonths += 1
+    netAMount += int(row[1])
+    greatestIncrease = int(row[1])
+    greatestIncreaseMonth = row[0]
+    
+    for row in csvreader:
+        
+        totalMonths += 1
+        netAMount += int(row[1])
+
+        revenue_change = int(row[1]) - previousRow
+        monthlyChange.append(revenue_change)
+        previousRow = int(row[1])
+        monthlyCount.append(row[0])
+        
+        if int(row[1]) > greatestIncrease:
+            greatestIncrease = int(row[1])
+            greatestIncreaseMonth = row[0]
+            
+        if int(row[1]) < greatestDecrease:
+            greatestDecrease = int(row[1])
+            greatestDecreaseMonth = row[0]  
+        
+
+    averageChange = sum(monthlyChange)/ len(monthlyChange)
+    
+    highest = max(monthlyChange)
+    lowest = min(monthlyChange)
+
+print(f"Financial Analysis")
+print(f"===================")
+print(f"Total Months: {totalMonths}")
+print(f"Total: ${netAMount}")
+print(f"Average Change: ${averageChange:.2f}")
+print(f"Greatest Increase in Profits:, {greatestIncreaseMonth}, (${highest})")
+print(f"Greatest Decrease in Profits:, {greatestDecreaseMonth}, (${lowest})")
+
+outputFile = os.path.join('.', 'PyBank', 'Resources', 'budget_data_revised.text')
+
+with open(outputFile, 'w',) as txtfile:
+
+    txtfile.write(f"Financial Analysis\n")
+    txtfile.write(f"---------------------------\n")
+    txtfile.write(f"Total Months: {totalMonths}\n")
+    txtfile.write(f"Total: ${netAMount}\n")
+    txtfile.write(f"Average Change: ${averageChange}\n")
+    txtfile.write(f"Greatest Increase in Profits:, {greatestIncreaseMonth}, (${highest})\n")
+    txtfile.write(f"Greatest Decrease in Profits:, {greatestDecreaseMonth}, (${lowest})\n")
