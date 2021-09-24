@@ -10,7 +10,7 @@ greatestIncreaseMonth = 0
 greatestDecrease = 0
 greatestDecreaseMonth = 0
 
-csvpath = os.path.join('.', 'PyBank', 'Resources', 'budget_data.csv')
+csvpath = os.path.join('Desktop', 'GitHub', 'python-challenge', 'PyBank', 'Resources', 'budget_data.csv')
 
 with open(csvpath, newline='') as csvfile:
 
@@ -50,14 +50,14 @@ with open(csvpath, newline='') as csvfile:
     lowest = min(monthlyChange)
 
 print(f"Financial Analysis")
-print(f"===================")
+print(f"---------------------------")
 print(f"Total Months: {totalMonths}")
 print(f"Total: ${netAMount}")
 print(f"Average Change: ${averageChange:.2f}")
 print(f"Greatest Increase in Profits:, {greatestIncreaseMonth}, (${highest})")
 print(f"Greatest Decrease in Profits:, {greatestDecreaseMonth}, (${lowest})")
 
-outputFile = os.path.join('.', 'PyBank', 'Resources', 'budget_data_revised.text')
+outputFile = os.path.join('Desktop', 'GitHub', 'python-challenge', 'PyBank', 'Resources', 'budget_data.csv')
 
 with open(outputFile, 'w',) as txtfile:
 
