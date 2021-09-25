@@ -1,1 +1,50 @@
 Here I will explain the results of the analysis.
+
+In this project, we are looking at content from a CSV file which contains financial infomormation on company. 
+
+we use the "import" to use those externtal libraries. Such as import csv.
+
+Then we need to set up our varibles to use throughout the rest of the program like 'totalmonths', 'greatestdecrease' ect. that focus on the specific thing wwe are looking for.
+
+Below provides the path to the csv file. I nmy case, due to an error with the terminal location and the file location (which I contacted Emerson support for) I am forced to manuelly insert the entire address startign at Destktop.
+csvpath = os.path.join('Desktop', 'GitHub', 'python-challenge', 'PyBank', 'Resources', 'budget_data.csv')
+
+Then we need to create a new variable using the reader command. 'csvfile' variable with the delimiter. We also need to read the header row and keep an eye on any changes.
+    csvreader = csv.reader(csvfile, delimiter=',')
+    
+    csvHeader = next(csvreader)
+    row = next(csvreader)
+    
+    previousRow = int(row[1])
+    totalMonths += 1
+    netAMount += int(row[1])
+    greatestIncrease = int(row[1])
+    greatestIncreaseMonth = row[0]
+    
+    
+ We then need a for loop to pass through every row 
+ for row in csvreader:
+        
+        totalMonths += 1
+        netAMount += int(row[1])
+
+        revenue_change = int(row[1]) - previousRow
+        monthlyChange.append(revenue_change)
+        previousRow = int(row[1])
+        monthlyCount.append(row[0])
+        
+        if int(row[1]) > greatestIncrease:
+            greatestIncrease = int(row[1])
+            greatestIncreaseMonth = row[0]
+            
+        if int(row[1]) < greatestDecrease:
+            greatestDecrease = int(row[1])
+            greatestDecreaseMonth = row[0]  
+        
+  Then, just like in Saturdays class, we need to find the sum of the monthly change and the length using len command.
+    averageChange = sum(monthlyChange)/ len(monthlyChange)
+    
+    highest = max(monthlyChange)
+    lowest = min(monthlyChange)
+    
+    Finally at the end you would print out the results with f strings.
